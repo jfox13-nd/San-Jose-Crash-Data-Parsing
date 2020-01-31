@@ -1,8 +1,8 @@
 # City of San Jose Vehicle Crash Data Parsing
 
-DOT Report 39 is a soon to be made publically avaible document containing all recorded vehicular crash data for the city of San Jose, starting at around the 70s.
+DOT Report 39 is a soon to be made publically avaible document containing all recorded traffic crash data for the city of San Jose, starting at around the 70s.
 
-This Repo provides basic Report 39 parsing and data cleaning scripts for use by the public. It will soon have scripts that will estimate the lattitude and longitude of each crash where this information is not available.
+This repo provides basic Report 39 parsing and data cleaning scripts for use by the public. It will soon have scripts that will estimate the lattitude and longitude of each crash where this information is not available.
 
 ## Explanation of the data
 
@@ -24,6 +24,8 @@ Report 39 is a CSV that contains the following information on every collision in
 - ModerateInjuries
 - MinorInjuries
 - PrimaryCollisionFactor
+
+It also has the following information available for every involved party in a collision
 - Sex
 - Age
 - PartyType
