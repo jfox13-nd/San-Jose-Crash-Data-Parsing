@@ -1,6 +1,6 @@
 # City of San Jose Traffic Crash Data Parsing
 
-DOT Report 39 is a soon to be made publically avaible document containing all recorded traffic crash data for the city of San Jose, starting at around the 70s.
+DOT Report 39 is document (that may soon be made publically available) containing all recorded traffic crash data for the city of San Jose, starting from the 70s.
 
 This repo provides basic Report 39 parsing and data cleaning scripts for use by the public. It will soon have scripts that will estimate the lattitude and longitude of each crash where this information is not available.
 
