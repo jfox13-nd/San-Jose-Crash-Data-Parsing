@@ -8,7 +8,6 @@ import json
 import pprint
 
 r39_original_csv_name = "r39.csv"
-#r39_formatted_csv_name = "r39_formatted.csv"
 r39_json_name = "r39.json"
 
 
@@ -71,7 +70,7 @@ def csv_to_json(r39_csv_data, r39_json_file=r39_json_name) -> None:
             }
         else:
             int_index = last_index
-        # need to make list of dicts?
+
         party = dict()
 
         party['Sex'] = line[17]
@@ -83,12 +82,9 @@ def csv_to_json(r39_csv_data, r39_json_file=r39_json_name) -> None:
 
         r39_dict[int_index]['Parties'].append(party)
 
-    #pprint.pprint(r39_dict[1121])
     with open(r39_json_file,'w+') as f:
         f.write(json.dumps(r39_dict,indent=4))
         
-    
-    #for index, line in enumerate(r39_csv_data)
         
 if __name__ == '__main__':
     csv_to_json(generate_formatted_csv_data())
