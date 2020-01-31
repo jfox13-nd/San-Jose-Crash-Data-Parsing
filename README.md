@@ -1,4 +1,4 @@
-# City of San Jose Vehicle Crash Data Parsing
+# City of San Jose Traffic Crash Data Parsing
 
 DOT Report 39 is a soon to be made publically avaible document containing all recorded traffic crash data for the city of San Jose, starting at around the 70s.
 
