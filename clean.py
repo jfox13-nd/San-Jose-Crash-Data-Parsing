@@ -13,7 +13,7 @@ r39_json_name = "r39.json"
 
 def generate_formatted_csv_data(r39_csv=r39_original_csv_name) -> list:
     '''
-    removes irrelevant lines from top of r39.csv
+    generates list of relevant data from Report 39 csv
     
     The following assumptions are made about the given data
     * entries with an index (Int #) listed as '(blank)' are to be excluded from the data
