@@ -11,7 +11,7 @@ r39_original_csv_name = "r39.csv"
 r39_json_name = "r39.json"
 
 
-def generate_formatted_csv_data(r39_csv=r39_original_csv_name) -> list:
+def generate_formatted_csv_data(r39_csv: str = r39_original_csv_name) -> list:
     '''
     generates list of relevant data from Report 39 csv
     
@@ -36,24 +36,37 @@ def generate_formatted_csv_data(r39_csv=r39_original_csv_name) -> list:
     
     return r39_contents_formatted
 
-def csv_to_json(r39_csv_data, r39_json_file=r39_json_name) -> None:
+def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
     '''converts r39 formatted csv to a json object'''
     r39_dict = {}
 
     header = r39_csv_data[0].split(',')
     r39_csv_data = r39_csv_data[1:]
 
+    numberical_columns = [
+                'Distance',
+                'FatalInjuries',
+                'SevereInjuries',
+                'ModerateInjuries',
+                'MinorInjuries'
+            ]
     last_index = 0
     
     for line in r39_csv_data:
         line = line.split(',')
+        # standardizes how null entries are represented in the data
+        for index, column in enumerate(line):
+            if column == 'None' or column == '(blank)' or column == '':
+                line[index] = None
+        
         if line[0]:
             int_index = int(line[0])
             last_index = int_index
             r39_dict[int_index] = {
                 'IntersectionName':line[1],
                 'TcrNumber':line[2],
-                'CrashDateTime':line[3],'DirectionFromIntersection':line[4],
+                'CrashDateTime':line[3],
+                'DirectionFromIntersection':line[4],
                 'Distance':line[5],
                 'ProximityToIntersection':line[6],
                 'Weather':line[7],
@@ -62,12 +75,16 @@ def csv_to_json(r39_csv_data, r39_json_file=r39_json_name) -> None:
                 'VehicleInvolvedWith':line[10],
                 'CollisionType':line[11],
                 'FatalInjuries':line[12],
-                'SevereInjuries':line[12],
-                'ModerateInjuries':line[13],
-                'MinorInjuries':line[14],
-                'PrimaryCollisionFactor':line[15],
+                'SevereInjuries':line[13],
+                'ModerateInjuries':line[14],
+                'MinorInjuries':line[15],
+                'PrimaryCollisionFactor':line[16],
                 'Parties': list()
             }
+            for column in numberical_columns:
+                if r39_dict[int_index][column]:
+                    r39_dict[int_index][column] = int(r39_dict[int_index][column])
+                        
         else:
             int_index = last_index
 
