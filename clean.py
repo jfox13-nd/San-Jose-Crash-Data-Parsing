@@ -5,7 +5,6 @@ __author__ = "Jack Fox"
 __email__ = "jfox13@nd.edu"
 
 import json
-import pprint
 
 r39_original_csv_name = "r39.csv"
 r39_json_name = "r39.json"
