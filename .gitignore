@@ -1,3 +1,4 @@
 *.csv
 *.json
 .secret
+scraps.txt
