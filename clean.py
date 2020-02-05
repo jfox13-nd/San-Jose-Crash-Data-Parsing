@@ -49,10 +49,7 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
                 'ModerateInjuries',
                 'MinorInjuries'
             ]
-    last_index = 0
-
-    print(len(r39_csv_data))
-    count_not_real = 0
+    last_index = ''
     
     for line in r39_csv_data:
         line = line.split(',')
@@ -61,12 +58,12 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
             if column == 'None' or column == '(blank)' or column == '':
                 line[index] = None
         
-        if line[0]:
-            int_index = int(line[0])
-            last_index = int_index
-            r39_dict[int_index] = {
+        if line[2]:
+            tcr_number = line[2]
+            last_index = tcr_number
+            r39_dict[tcr_number] = {
+                'Int #': line[0],
                 'IntersectionName':line[1],
-                'TcrNumber':line[2],
                 'CrashDateTime':line[3],
                 'DirectionFromIntersection':line[4],
                 'Distance':line[5],
@@ -84,12 +81,11 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
                 'Parties': list()
             }
             for column in numberical_columns:
-                if r39_dict[int_index][column]:
-                    r39_dict[int_index][column] = int(r39_dict[int_index][column])
+                if r39_dict[tcr_number][column]:
+                    r39_dict[tcr_number][column] = int(r39_dict[tcr_number][column])
                         
         else:
-            int_index = last_index
-            count_not_real += 1
+            tcr_number = last_index
 
         party = dict()
 
@@ -100,10 +96,7 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
         party['VehicleDirection'] = line[21]
         party['ViolationCodeDescription'] = line[22]
 
-        r39_dict[int_index]['Parties'].append(party)
-
-    #print(len(r39_dict))
-    print(count_not_real)
+        r39_dict[tcr_number]['Parties'].append(party)
 
     with open(r39_json_file,'w+') as f:
         f.write(json.dumps(r39_dict,indent=4))
