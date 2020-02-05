@@ -7,9 +7,9 @@ This repo provides basic Report 39 parsing and data cleaning scripts for use by 
 ## Explanation of the data
 
 Report 39 is a CSV that contains the following information on every collision incident:
-- Int #: this is a index for each collision incident
+- Int #: Intersection Number
 - IntersectionName
-- TcrNumber
+- TcrNumber: A unique ID for each crash
 - CrashDateTime
 - Direction From Intersection
 - Distance
