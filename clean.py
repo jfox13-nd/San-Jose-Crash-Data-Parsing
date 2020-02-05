@@ -5,10 +5,9 @@ __author__ = "Jack Fox"
 __email__ = "jfox13@nd.edu"
 
 import json
-import pprint
 
-r39_original_csv_name = "r39.csv"
-r39_json_name = "r39.json"
+r39_original_csv_name = "r39_full.csv"
+r39_json_name = "r39_full.json"
 
 
 def generate_formatted_csv_data(r39_csv: str = r39_original_csv_name) -> list:
@@ -33,7 +32,7 @@ def generate_formatted_csv_data(r39_csv: str = r39_original_csv_name) -> list:
         if line.startswith("(blank)") or line.startswith("Grand Total"):
             continue
         r39_contents_formatted.append(line)
-    
+
     return r39_contents_formatted
 
 def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
@@ -51,6 +50,9 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
                 'MinorInjuries'
             ]
     last_index = 0
+
+    print(len(r39_csv_data))
+    count_not_real = 0
     
     for line in r39_csv_data:
         line = line.split(',')
@@ -87,6 +89,7 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
                         
         else:
             int_index = last_index
+            count_not_real += 1
 
         party = dict()
 
@@ -98,6 +101,9 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
         party['ViolationCodeDescription'] = line[22]
 
         r39_dict[int_index]['Parties'].append(party)
+
+    #print(len(r39_dict))
+    print(count_not_real)
 
     with open(r39_json_file,'w+') as f:
         f.write(json.dumps(r39_dict,indent=4))
