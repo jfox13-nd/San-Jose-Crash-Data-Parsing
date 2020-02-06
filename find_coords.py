@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'''clean.py: script for cleaning DOT report 39 data'''
+'''find_coords.py: script for adding gps coordinates to report 39 data'''
 __author__ = "Jack Fox"
 __email__ = "jfox13@nd.edu"
 
