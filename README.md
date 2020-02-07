@@ -89,3 +89,15 @@ The following information should be included in a file named .secret
 ```
 GOOGLE_API_KEY
 ```
+
+## Description of files
+
+### clean.py
+Takes a Report 39 csv cleans the data and converts to a JSON file.
+
+### find_coords.py
+[TODO] Script that takes in the clean Report 39 JSON file finds the GPS locations of each collision and creates a new JSON file with this additional information.
+
+### osm.py
+[TODO] Given a street name and a corresponding gps coordinate on that street find all the gps coordinates on that road
+This script is mainly for testing, its content will eventually be incorporated into other scripts or made a module.
