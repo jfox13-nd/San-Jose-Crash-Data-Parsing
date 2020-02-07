@@ -84,3 +84,8 @@ The following is a sample .json output of clean.py:
     },
 }
 ```
+
+The following information should be included in a file named .secret
+```
+GOOGLE_API_KEY
+```
