@@ -34,8 +34,6 @@ def usable_collisions(d: dict) -> int:
     for crash in d:
         if d[crash]['Int #'] is not None and d[crash]['IntersectionName'] is not None and d[crash]['DirectionFromIntersection'] is not None and d[crash]['Distance'] is not None:
             count += 1
-        #else:
-        #    pprint.pprint(d[crash])
     return count
 
 if __name__ == '__main__':
