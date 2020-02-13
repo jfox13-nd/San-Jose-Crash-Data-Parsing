@@ -11,8 +11,9 @@ Report 39 is a CSV that contains the following information on every collision in
 - IntersectionName
 - TcrNumber: A unique ID for each crash
 - CrashDateTime
-- Direction From Intersection
-- Distance
+- DirectionFromIntersection
+- Distance: Feet from the face of the intersection curb to the crash
+(ex. if a crash occurs some distance East of an intersection then measurement would start at the Eastern edge of the North/South road, not the center of the intersection)
 - ProximityToIntersection
 - Weather
 - Lighting
