@@ -11,8 +11,9 @@ Report 39 is a CSV that contains the following information on every collision in
 - IntersectionName
 - TcrNumber: A unique ID for each crash
 - CrashDateTime
-- Direction From Intersection
-- Distance
+- DirectionFromIntersection
+- Distance: Feet from the face of the intersection curb to the crash
+(ex. if a crash occurs some distance East of an intersection then measurement would start at the Eastern edge of the North/South road, not the center of the intersection)
 - ProximityToIntersection
 - Weather
 - Lighting
@@ -89,3 +90,15 @@ The following information should be included in a file named .secret
 ```
 GOOGLE_API_KEY
 ```
+
+## Description of files
+
+### clean.py
+Takes a Report 39 csv cleans the data and converts to a JSON file.
+
+### find_coords.py
+[TODO] Script that takes in the clean Report 39 JSON file finds the GPS locations of each collision and creates a new JSON file with this additional information.
+
+### osm.py
+[TODO] Given a street name and a corresponding gps coordinate on that street find all the gps coordinates on that road
+This script is mainly for testing, its content will eventually be incorporated into other scripts or made a module.
