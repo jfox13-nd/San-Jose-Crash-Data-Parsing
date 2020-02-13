@@ -42,7 +42,7 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
     header = r39_csv_data[0].split(',')
     r39_csv_data = r39_csv_data[1:]
 
-    numberical_columns = [
+    numerical_columns = [
                 'Distance',
                 'FatalInjuries',
                 'SevereInjuries',
@@ -50,6 +50,8 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
                 'MinorInjuries'
             ]
     last_index = ''
+    last_int_num = ''
+    last_int_name = ''
     
     for line in r39_csv_data:
         line = line.split(',')
@@ -80,7 +82,15 @@ def csv_to_json(r39_csv_data: list, r39_json_file: str = r39_json_name) -> None:
                 'PrimaryCollisionFactor':line[16],
                 'Parties': list()
             }
-            for column in numberical_columns:
+
+            if not line[0] and not line[1]:
+                r39_dict[tcr_number]['Int #'] = last_int_num
+                r39_dict[tcr_number]['IntersectionName'] = last_int_name
+            else:
+                last_int_num = r39_dict[tcr_number]['Int #']
+                last_int_name = r39_dict[tcr_number]['IntersectionName']
+
+            for column in numerical_columns:
                 if r39_dict[tcr_number][column]:
                     r39_dict[tcr_number][column] = int(r39_dict[tcr_number][column])
                         

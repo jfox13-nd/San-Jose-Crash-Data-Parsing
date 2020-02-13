@@ -15,6 +15,7 @@ import certifi
 import urllib
 import math
 import pprint
+import sys
 
 r39_json_name = "r39.json"
 r39_json_name_coords = "r39_coords.json"
@@ -56,14 +57,13 @@ def find_gps_coordinates(collision: dict) -> tuple:
     addr = collision["IntersectionName"]
     distance = collision["Distance"]
 
-    # convert feet to km
     if distance:
-        distance_km *= 0.3048
+        distance_km = feet_to_km(distance)
 
     intersection_res = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}'.format(addr,API_KEY))
     intersection_res = intersection_res.json
     if not intersection_res['results'] or not intersection_res['results'][0] or not intersection_res['results'][0]['geometry'] or not intersection_res['results'][0]['geometry']['location']:
-        print("Failed to get gps coordinates of crash at {}".format(addr))
+        print("Failed to get gps coordinates of crash at {}".format(addr), file=sys.stderr)
         return None,None
 
     intersection_lat = intersection_res['results'][0]['geometry']['location']['lat']
